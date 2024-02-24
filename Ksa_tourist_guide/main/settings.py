@@ -50,7 +50,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "Ksa_tourist_guide.urls"
 ROOT_URLCONF = 'main.urls'
 TEMPLATE_DIR = os.path.join(BASE_DIR, "apps" + os.sep + "templates") 
 
@@ -59,7 +58,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "apps" + os.sep + "templates")
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [TEMPLATE_DIR],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -72,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "Ksa_tourist_guide.wsgi.application"
+WSGI_APPLICATION = 'main.wsgi.application'
 
 
 # Database
