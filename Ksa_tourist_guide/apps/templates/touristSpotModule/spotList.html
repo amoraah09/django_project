@@ -1,16 +1,54 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
+{% block stylesheets %}
+<style>
+    .spot-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .spot-table th,
+    .spot-table td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .spot-table th {
+        background-color: #f2f2f2;
+    }
+
+    .spot-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .spot-table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+
+{% endblock stylesheets %}
 <h1>Tourist Spot List</h1>
-<h3>Spot 1</h3>
-<h4>Name</h4>
-<a href="/spot/12344321">Al Khobar</a>
-<h4>Description</h4>
-<p>A vibrant city in the Eastern Province of KSA.</p>
-</br>
-<h3>Spot 2</h3>
-<h4>Name</h4>
-<a href="/spot/56788765">Najran</a>
-<h4>Description</h4>
-<p>A city rich with history in the southern region of KSA.</p>
+<table class="spot-table">
+    <thead>
+        <tr>
+            <th>Spot</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td><a href="/spot/12344321">Al Khobar</a></td>
+            <td>A vibrant city in the Eastern Province of KSA.</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><a href="/spot/56788765">Najran</a></td>
+            <td>A city rich with history in the southern region of KSA.</td>
+        </tr>
+    </tbody>
+</table>
 {% endblock content %}

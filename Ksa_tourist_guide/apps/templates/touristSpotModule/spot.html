@@ -1,23 +1,17 @@
 {% extends "layouts/base.html" %}
 
-{% block stylesheets%}
-<style>
-    ...
-</style>
-{% endblock stylesheets%}
-
 {% block title %} Spot Info {% endblock %}
 
 {% block content %}
-<h3>Tourist Spot Details</h3>
-<h4>Name</h4>
-<p>{{spot.name}}</p>
-<h4>Description</h4>
-<p>{{spot.description}}</p>
+<h3 style="text-align: center; margin-bottom: 20px; color:coral">Tourist Spot Details</h3>
+<ol class="spot-details" style="list-style-type: none; padding: 0;">
+    <li style="margin-bottom: 20px;">
+        <h4 style="font-size: 18px; margin-bottom: 5px; ">Name</h4>
+        <p style="font-size: 14px; margin-bottom: 10px;">{{spot.name}}</p>
+    </li>
+    <li style="margin-bottom: 20px;">
+        <h4 style="font-size: 18px; margin-bottom: 5px;">Description</h4>
+        <p style="font-size: 14px; margin-bottom: 10px;">{{spot.description}}</p>
+    </li>
+</ol>
 {% endblock content %}
-
-{% block javascripts%}
-<script>
-    ...
-</script>
-{% endblock javascripts%}
