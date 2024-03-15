@@ -4,5 +4,6 @@ from apps.TouristSpots import views
 urlpatterns = [    
     path('', views.index, name='index'),
     path('spots', views.spots),
+    path('register', views.register),
     path('spot/<int:sId>', views.spot)
 ]

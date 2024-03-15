@@ -6,6 +6,8 @@ def index(request):
 
 def spots(request):
     return render(request, 'touristSpotModule/spotList.html')
+def register(request):
+    return render(request, 'touristSpotModule/register.html')
 
 def spot(request, sId):
     
