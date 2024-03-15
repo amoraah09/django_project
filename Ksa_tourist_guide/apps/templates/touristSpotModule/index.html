@@ -1,5 +1,16 @@
 {% extends "layouts/base.html" %}
 
+{% load static %}  
+{% block stylesheets %}
+
+{% endblock %}
+
 {% block content %}
-<h1> Hello to my Tourists guide Application </h1>
+    <div class="hero-container">
+        <img src="{% static 'images/ksa t guide.png' %}" alt="Hero Image" class="hero-image">  
+        <h1 class="hero-title">Hello to my Tourists Guide Application</h1>
+    </div>
+
 {% endblock content %}
+
+

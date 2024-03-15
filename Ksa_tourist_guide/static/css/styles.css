@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.header {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+.nav-item {
+    margin: 0 10px;
+}
+.nav-link {
+    text-decoration: none;
+    color: #333;
+}
+.nav-link:hover {
+    color: #017bf5;
+}
+.hero-container {
+    position: relative;
+    text-align: center;
+}
+.hero-image {
+    width: 90%;
+    height: auto;
+}
+.hero-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px #000000;
+}
