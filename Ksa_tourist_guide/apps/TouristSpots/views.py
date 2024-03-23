@@ -5,7 +5,7 @@ def index(request):
     return render(request, 'touristSpotModule/index.html')
 
 def spots(request):
-    return render(request, 'touristSpotModule/spotList.html')
+    return render(request, 'touristSpotModule/spotList.html', {'spots':__getSpots()})
 def register(request):
     return render(request, 'touristSpotModule/register.html')
 
@@ -22,3 +22,10 @@ def spot(request, sId):
     
     context = {'spot':targetSpot} # spot is the variable name accessible by template
     return render(request, 'TouristSpotModule/spot.html', context)
+
+def __getSpots():
+    return [
+        {'id': 1, 'name': 'Al-Ula', 'city': 'Al-Ula', 'description': 'Ancient city in the Medina Region, home to the UNESCO World Heritage site of Hegra', 'location': 'Al-Ula, Medina Region, Saudi Arabia'},
+        {'id': 2, 'name': 'Kingdom Centre Tower', 'city': 'Riyadh', 'description': 'A 99-story, 302.3 m skyscraper in Riyadh, famous for its distinctive parabolic arch', 'location': '2239 King Fahd Rd, Al Olaya, Riyadh 12214, Saudi Arabia'},
+        {'id': 3, 'name': 'Jeddah Corniche', 'city': 'Jeddah', 'description': 'Waterfront area along the Red Sea, with resorts, beaches, and art sculptures', 'location': 'Jeddah Corniche, Jeddah, Saudi Arabia'}
+    ]
