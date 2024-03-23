@@ -29,3 +29,23 @@ def __getSpots():
         {'id': 2, 'name': 'Kingdom Centre Tower', 'city': 'Riyadh', 'description': 'A 99-story, 302.3 m skyscraper in Riyadh, famous for its distinctive parabolic arch', 'location': '2239 King Fahd Rd, Al Olaya, Riyadh 12214, Saudi Arabia'},
         {'id': 3, 'name': 'Jeddah Corniche', 'city': 'Jeddah', 'description': 'Waterfront area along the Red Sea, with resorts, beaches, and art sculptures', 'location': 'Jeddah Corniche, Jeddah, Saudi Arabia'}
     ]
+def filterSpots(request):
+    if request.method == "POST":
+        keyword = request.POST.get('keyword').lower()
+        searchByName = request.POST.get('optionName')
+        searchByCity = request.POST.get('optionCity')
+        
+        spots = __getSpots()
+        filteredSpots = []
+        for spot in spots:
+            match = False
+            if searchByName and keyword in spot['name'].lower():
+                match = True
+            if not match and searchByCity and keyword in spot['city'].lower():
+                match = True
+            if match:
+                filteredSpots.append(spot)
+                
+        return render(request, 'touristSpotModule/spotList.html', {'spots': filteredSpots})
+    else:
+        return render(request, 'touristSpotModule/search.html')

@@ -5,5 +5,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('spots', views.spots),
     path('register', views.register),
-    path('spot/<int:sId>', views.spot)
+    path('spot/<int:sId>', views.spot),
+    path('filterSpots', views.filterSpots, name="filterSpots")
+
 ]

@@ -1,0 +1,19 @@
+{% extends "layouts/base.html" %}
+
+
+
+{% block content %}
+
+<form method="POST" class="my-form">
+    {% csrf_token %}
+    <label for="keyword">Keyword:</label><br>
+    <input type="text" id="keyword" name="keyword"><br>
+    <input type="checkbox" id="optionName" name="optionName" value="Name">
+    <label for="optionName"> Search by Name</label><br>
+    <input type="checkbox" id="optionCity" name="optionCity" value="City">
+    <label for="optionCity"> Search by City</label><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+{% endblock content %}
