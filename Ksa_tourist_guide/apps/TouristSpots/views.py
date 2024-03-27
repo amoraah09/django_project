@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import ToutistSpots
+from django.views.decorators.csrf import csrf_exempt
+
+
+
 
 def index(request):
     # this view returns index
@@ -27,12 +31,12 @@ def spot(request, sId):
 def __getSpots():
     spots = ToutistSpots.objects.order_by('name')
     return spots;
-
+@csrf_exempt
 def filterSpots(request):
     if request.method == "POST":
         keyword = request.POST.get('keyword', '').lower()
-        searchByName = request.POST.get('optionName') == 'on'
-        searchByCity = request.POST.get('optionCity') == 'on'
+        searchByName = request.POST.get('optionName') 
+        searchByCity = request.POST.get('optionCity') 
 
         if searchByName and searchByCity:
             spots = ToutistSpots.objects.filter(
@@ -42,6 +46,7 @@ def filterSpots(request):
             )
         elif searchByName:
             spots = ToutistSpots.objects.filter(name__icontains=keyword)
+            print(spots)
         elif searchByCity:
             spots = ToutistSpots.objects.filter(city__icontains=keyword)
         else:
