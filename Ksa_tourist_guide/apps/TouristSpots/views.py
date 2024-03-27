@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .models import ToutistSpots
 
 def index(request):
     # this view returns index
@@ -24,28 +25,28 @@ def spot(request, sId):
     return render(request, 'TouristSpotModule/spot.html', context)
 
 def __getSpots():
-    return [
-        {'id': 1, 'name': 'Al-Ula', 'city': 'Al-Ula', 'description': 'Ancient city in the Medina Region, home to the UNESCO World Heritage site of Hegra', 'location': 'Al-Ula, Medina Region, Saudi Arabia'},
-        {'id': 2, 'name': 'Kingdom Centre Tower', 'city': 'Riyadh', 'description': 'A 99-story, 302.3 m skyscraper in Riyadh, famous for its distinctive parabolic arch', 'location': '2239 King Fahd Rd, Al Olaya, Riyadh 12214, Saudi Arabia'},
-        {'id': 3, 'name': 'Jeddah Corniche', 'city': 'Jeddah', 'description': 'Waterfront area along the Red Sea, with resorts, beaches, and art sculptures', 'location': 'Jeddah Corniche, Jeddah, Saudi Arabia'}
-    ]
+    spots = ToutistSpots.objects.order_by('name')
+    return spots;
+
 def filterSpots(request):
     if request.method == "POST":
-        keyword = request.POST.get('keyword').lower()
-        searchByName = request.POST.get('optionName')
-        searchByCity = request.POST.get('optionCity')
-        
-        spots = __getSpots()
-        filteredSpots = []
-        for spot in spots:
-            match = False
-            if searchByName and keyword in spot['name'].lower():
-                match = True
-            if not match and searchByCity and keyword in spot['city'].lower():
-                match = True
-            if match:
-                filteredSpots.append(spot)
-                
-        return render(request, 'touristSpotModule/spotList.html', {'spots': filteredSpots})
+        keyword = request.POST.get('keyword', '').lower()
+        searchByName = request.POST.get('optionName') == 'on'
+        searchByCity = request.POST.get('optionCity') == 'on'
+
+        if searchByName and searchByCity:
+            spots = ToutistSpots.objects.filter(
+                name__icontains=keyword
+            ) | ToutistSpots.objects.filter(
+                city__icontains=keyword
+            )
+        elif searchByName:
+            spots = ToutistSpots.objects.filter(name__icontains=keyword)
+        elif searchByCity:
+            spots = ToutistSpots.objects.filter(city__icontains=keyword)
+        else:
+            spots = __getSpots()
+            
+        return render(request, 'touristSpotModule/spotList.html', {'spots': spots})
     else:
         return render(request, 'touristSpotModule/search.html')
