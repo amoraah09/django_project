@@ -1,11 +1,11 @@
 from django.urls import path
-from apps.TouristSpots import views
+from . import views
 
-urlpatterns = [    
+urlpatterns = [
     path('', views.index, name='index'),
-    path('spots', views.spots),
-    path('register', views.register),
-    path('spot/<int:sId>', views.spot),
-    path('filterSpots', views.filterSpots, name="filterSpots")
-
+    path('spots/', views.spots, name='spots'),
+    path('spot/<int:sId>/', views.spot, name='spot'),
+    path('filter/', views.filterSpots, name='filter_spots'),
+    path('add/', views.add_spot, name='add_spot'),
+    path('edit/<int:sId>/', views.edit_spot, name='edit_spot'),
 ]
