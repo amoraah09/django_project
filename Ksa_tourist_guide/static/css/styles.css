@@ -71,6 +71,20 @@ form button {
     border-radius: 4px;
     cursor: pointer;
 }
+#rm-btn{
+    color: red;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background:none;
+    display: inline;
+    margin:none;
+}
+#edit-btn{
+    color: blue;
+    border: none;
+    cursor: pointer;
+}
 
 form button:hover {
     background-color: #0056b3;

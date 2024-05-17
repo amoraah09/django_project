@@ -6,22 +6,7 @@
 <h3 style="text-align: center; margin-bottom: 20px; color: coral">Edit Tourist Spot</h3>
 <form method="POST" action="{% url 'edit_spot' spot.id %}">
     {% csrf_token %}
-    <div style="margin-bottom: 10px;">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="{{ spot.name }}" required>
-    </div>
-    <div style="margin-bottom: 10px;">
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" value="{{ spot.city }}" required>
-    </div>
-    <div style="margin-bottom: 10px;">
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required>{{ spot.description }}</textarea>
-    </div>
-    <div style="margin-bottom: 10px;">
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" value="{{ spot.location }}" required>
-    </div>
-    <button type="submit">Update Spot</button>
+    {{ form }}
+    <button type="submit" class="btn btn-primary">Update Spot</button>
 </form>
 {% endblock %}

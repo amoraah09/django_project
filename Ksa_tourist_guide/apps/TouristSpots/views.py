@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import TouristSpots
+from .forms import TouristSpotsForm
 from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
-    # this view returns index
     return render(request, 'touristSpotModule/index.html')
 
 def spots(request):
@@ -48,30 +48,31 @@ def filterSpots(request):
 @csrf_exempt
 def add_spot(request):
     if request.method == "POST":
-        name = request.POST['name']
-        city = request.POST['city']
-        description = request.POST['description']
-        location = request.POST['location']
+        form = TouristSpotsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('spots')
+    else:
+        form = TouristSpotsForm()
 
-        new_spot = TouristSpots(name=name, city=city, description=description, location=location)
-        new_spot.save()
-
-        return redirect('spots')
-
-    return render(request, 'touristSpotModule/add_spot.html')
+    return render(request, 'touristSpotModule/add_spot.html', {'form': form})
 
 @csrf_exempt
 def edit_spot(request, sId):
     spot = get_object_or_404(TouristSpots, pk=sId)
 
     if request.method == "POST":
-        spot.name = request.POST['name']
-        spot.city = request.POST['city']
-        spot.description = request.POST['description']
-        spot.location = request.POST['location']
-        spot.save()
+        form = TouristSpotsForm(request.POST, instance=spot)
+        if form.is_valid():
+            form.save()
+            return redirect('spots')
+    else:
+        form = TouristSpotsForm(instance=spot)
 
-        return redirect('spots')
+    return render(request, 'touristSpotModule/edit_spot.html', {'form': form, 'spot': spot})
 
-    context = {'spot': spot}
-    return render(request, 'touristSpotModule/edit_spot.html', context)
+@csrf_exempt
+def delete_spot(request, sId):
+    spot = get_object_or_404(TouristSpots, pk=sId)
+    spot.delete()
+    return redirect('spots')

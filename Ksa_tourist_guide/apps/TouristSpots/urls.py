@@ -8,4 +8,6 @@ urlpatterns = [
     path('filter/', views.filterSpots, name='filter_spots'),
     path('add/', views.add_spot, name='add_spot'),
     path('edit/<int:sId>/', views.edit_spot, name='edit_spot'),
+        path('delete/<int:sId>/', views.delete_spot, name='delete_spot'), 
+
 ]

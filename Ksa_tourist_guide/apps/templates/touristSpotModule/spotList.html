@@ -14,7 +14,8 @@
             <th>Name</th>
             <th>City</th>
             <th>Description</th>
-            <th>Actions</th>
+            <th>Edit</th>
+            <th>Remove</th>
         </tr>
     </thead>
     <tbody>
@@ -26,11 +27,18 @@
             <td>{{ spot.description }}</td>
             <td>
 
-                <a href="{% url 'edit_spot' spot.id %}">Edit</a>
-                <a href="#">Remove</a>
+                <a href="{% url 'edit_spot' spot.id %}" id="edit-btn">Edit</a>
+
+            </td>
+            <td>
+
+                <form method="POST" action="{% url 'delete_spot' spot.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button id="rm-btn" type="submit">Delete</button>
+                </form>
             </td>
 
-            
+
         </tr>
         {% endfor %}
     </tbody>
